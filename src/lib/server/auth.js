@@ -51,6 +51,7 @@ export async function createSession(userId) {
 }
 
 /**
+<<<<<<< HEAD
  * Resolve the currently logged-in user from a session cookie.
  *
  * The role deliberately comes from the database on every request instead of
@@ -64,10 +65,27 @@ export async function getSessionUser(sessionId) {
 		`SELECT users.id, users.email, users.role
 		 FROM sessions
 		 INNER JOIN users ON users.id = sessions.user_id
+=======
+ * Find the user that owns a session, but only while that session is still valid.
+ * The password hash is deliberately not selected because it is never needed by
+ * pages after a user has logged in.
+ */
+export async function validateSession(sessionId) {
+	if (!sessionId) return null;
+
+	const [sessions] = await pool.execute(
+		`SELECT users.id, users.email, users.role
+		 FROM sessions
+		 JOIN users ON users.id = sessions.user_id
+>>>>>>> 291474e5e5536862b87cfd556a4b045db1239ea1
 		 WHERE sessions.id = ? AND sessions.expires_at > NOW()
 		 LIMIT 1`,
 		[sessionId]
 	);
 
+<<<<<<< HEAD
 	return users[0] ?? null;
+=======
+	return sessions[0] ?? null;
+>>>>>>> 291474e5e5536862b87cfd556a4b045db1239ea1
 }
