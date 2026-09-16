@@ -1,29 +1,34 @@
-import { error } from '@sveltejs/kit';
-import { db } from '$lib/server/db';
+import { error, fail } from '@sveltejs/kit';
+import { del } from '@vercel/blob';
+import pool from '$lib/server/db.js';
+
+function requireAdmin(user) {
+	if (!user || user.role !== 'admin') error(403, 'Not allowed');
+}
 
 export async function load({ locals }) {
-	if (!locals.user || locals.user.role !== 'admin') {
-		throw error(403, 'Nicht erlaubt');
-	}
-
-	const pdfs = await db.pdf.findMany({
-		include: { user: true }
-	});
-
+	requireAdmin(locals.user);
+	const [pdfs] = await pool.execute(
+		`SELECT pdfs.id, pdfs.filename, pdfs.blob_url, pdfs.created_at, users.email AS uploaded_by
+		 FROM pdfs
+		 INNER JOIN users ON users.id = pdfs.user_id
+		 ORDER BY pdfs.created_at DESC`
+	);
 	return { pdfs };
 }
 
 export const actions = {
 	deletePdf: async ({ request, locals }) => {
-		if (!locals.user || locals.user.role !== 'admin') {
-			throw error(403, 'Nicht erlaubt');
-		}
+		requireAdmin(locals.user);
+		const id = Number((await request.formData()).get('id'));
+		if (!Number.isInteger(id) || id < 1) return fail(400, { error: 'Invalid PDF.' });
 
-		const formData = await request.formData();
-		const id = formData.get('id');
+		const [pdfs] = await pool.execute('SELECT blob_url FROM pdfs WHERE id = ? LIMIT 1', [id]);
+		const pdf = pdfs[0];
+		if (!pdf) return fail(404, { error: 'PDF not found.' });
 
-		await db.pdf.delete({ where: { id: Number(id) } });
-
+		await pool.execute('DELETE FROM pdfs WHERE id = ?', [id]);
+		await del(pdf.blob_url).catch((cause) => console.error('Could not delete PDF blob', cause));
 		return { success: true };
 	}
 };

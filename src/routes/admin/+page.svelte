@@ -1,6 +1,7 @@
 <script lang="ts">
-	export let data;
 	import { enhance } from '$app/forms';
+
+	let { data } = $props();
 </script>
 
 <h1>Admin – Alle PDFs</h1>
@@ -14,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each data.pdfs as pdf}
+		{#each data.pdfs as pdf (pdf.id)}
 			<tr>
 				<td>{pdf.filename}</td>
 				<td>{pdf.user?.email}</td>
