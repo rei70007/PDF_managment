@@ -49,3 +49,23 @@ export async function createSession(userId) {
 
 	return sessionId;
 }
+
+/**
+ * Find the user that owns a session, but only while that session is still valid.
+ * The password hash is deliberately not selected because it is never needed by
+ * pages after a user has logged in.
+ */
+export async function validateSession(sessionId) {
+	if (!sessionId) return null;
+
+	const [sessions] = await pool.execute(
+		`SELECT users.id, users.email, users.role
+		 FROM sessions
+		 JOIN users ON users.id = sessions.user_id
+		 WHERE sessions.id = ? AND sessions.expires_at > NOW()
+		 LIMIT 1`,
+		[sessionId]
+	);
+
+	return sessions[0] ?? null;
+}
