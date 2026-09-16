@@ -30,8 +30,10 @@ export const actions = {
 			return fail(400, { error: 'An account with that email already exists.', email });
 		}
 
+		// Hash the password before storing it — this line was missing before.
 		const passwordHash = await hashPassword(password);
-		const [result] = await pool.execute('INSERT INTO users (email, password) VALUES (?, ?)', [
+
+		const [result] = await pool.execute('INSERT INTO users (email, password_hash) VALUES (?, ?)', [
 			email,
 			passwordHash
 		]);
