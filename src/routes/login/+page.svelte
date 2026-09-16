@@ -1,86 +1,68 @@
 <script>
 	import { resolve } from '$app/paths';
 
-	// SvelteKit returns data from the form action here (including login errors).
+	// Form-Daten von SvelteKit übernehmen
 	let { form } = $props();
 </script>
 
-<svelte:head>
-	<title>Log in | PDF Management</title>
-	<meta name="description" content="Log in to access your PDF Management account." />
-</svelte:head>
+<!-- Container für das Login-Formular -->
+<div class="mx-auto mt-16 max-w-sm">
+	.
+	<!-- Titel der Seite -->
+	<h1 class="mb-6 text-center text-4xl font-black tracking-tight text-[#0d1117]">PDF_Manager</h1>
 
-<!-- This wrapper keeps the card centred while leaving comfortable space on small screens. -->
-<main class="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10 sm:px-6">
-	<section
-		class="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
-		aria-labelledby="login-heading"
-	>
-		<div class="mb-7">
-			<p class="mb-2 text-sm font-medium text-sky-700">PDF Management</p>
-			<h1 id="login-heading" class="text-2xl font-semibold tracking-tight text-slate-900">
-				Welcome back
-			</h1>
-			<p class="mt-2 text-sm leading-6 text-slate-600">Log in to manage your saved documents.</p>
+	<!-- Fehlermeldung anzeigen -->
+	{#if form?.error}
+		<p
+			class="mb-4 rounded border border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-600"
+		>
+			{form.error}
+		</p>
+	{/if}
+
+	<!-- Login-Formular -->
+	<form method="POST" class="flex flex-col gap-3 rounded border border-gray-300 bg-white p-10">
+		<!-- Eingabefeld für Benutzername/E-Mail -->
+		<div class="flex flex-col gap-1">
+			<input
+				type="email"
+				name="email"
+				required
+				placeholder="Email address"
+				class="rounded border border-gray-300 bg-gray-50 px-3 py-2 text-xs placeholder-gray-400 focus:border-gray-400 focus:outline-none"
+			/>
 		</div>
 
-		<!-- The server returns this generic message for every failed login attempt. -->
-		{#if form?.error}
-			<p
-				class="mb-5 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-700"
-				role="alert"
-			>
-				{form.error}
-			</p>
-		{/if}
+		<!-- Eingabefeld für Passwort -->
+		<div class="flex flex-col gap-1">
+			<input
+				type="password"
+				name="password"
+				required
+				placeholder="Password"
+				class="rounded border border-gray-300 bg-gray-50 px-3 py-2 text-xs placeholder-gray-400 focus:border-gray-400 focus:outline-none"
+			/>
+		</div>
 
-		<!-- A normal POST form lets SvelteKit progressively enhance this page without client-side state. -->
-		<form method="POST" class="space-y-5">
-			<div>
-				<label for="email" class="mb-1.5 block text-sm font-medium text-slate-700"
-					>Email address</label
-				>
-				<input
-					id="email"
-					name="email"
-					type="email"
-					autocomplete="email"
-					required
-					value={form?.email ?? ''}
-					class="block w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-600 focus:ring-2 focus:ring-sky-100"
-					placeholder="you@example.com"
-				/>
-			</div>
+		<!-- Login-Button -->
+		<button
+			type="submit"
+			class="mt-1 cursor-pointer rounded-lg bg-pink-500 py-1.5 text-sm font-semibold text-white transition hover:bg-pink-600"
+		>
+			Log in
+		</button>
 
-			<div>
-				<label for="password" class="mb-1.5 block text-sm font-medium text-slate-700"
-					>Password</label
-				>
-				<input
-					id="password"
-					name="password"
-					type="password"
-					autocomplete="current-password"
-					required
-					class="block w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-600 focus:ring-2 focus:ring-sky-100"
-					placeholder="Enter your password"
-				/>
-			</div>
+		<!-- Trennlinie -->
+		<div class="my-1 flex items-center gap-3">
+			<span class="h-px flex-1 bg-gray-300"></span>
+			<span class="text-xs font-semibold tracking-widest text-gray-400">OR</span>
+			<span class="h-px flex-1 bg-gray-300"></span>
+		</div>
 
-			<button
-				type="submit"
-				class="w-full rounded-lg bg-sky-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2"
-			>
-				Log in
-			</button>
-		</form>
-
-		<p class="mt-6 text-center text-sm text-slate-600">
+		<!-- Link zur Registrierung -->
+		<p class="text-center text-sm text-gray-500">
 			Don't have an account?
-			<a
-				href={resolve('/signup')}
-				class="font-semibold text-sky-700 hover:text-sky-800 hover:underline">Sign up</a
-			>
+			<a href={resolve('/signup')} class="font-semibold text-pink-500 hover:underline"> Sign up </a>
 		</p>
-	</section>
-</main>
+	</form>
+</div>

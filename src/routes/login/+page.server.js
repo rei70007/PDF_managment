@@ -19,13 +19,14 @@ export const actions = {
 		}
 
 		// Parameter placeholders (?) protect the query from SQL injection.
-		const [users] = await pool.execute('SELECT id, password FROM users WHERE email = ? LIMIT 1', [
-			email
-		]);
+		const [users] = await pool.execute(
+			'SELECT id, password_hash FROM users WHERE email = ? LIMIT 1',
+			[email]
+		);
 		const user = users[0];
 
 		// Verify the submitted password against the stored password hash from the database.
-		if (!user || !(await verifyPassword(password, user.password))) {
+		if (!user || !(await verifyPassword(password, user.password_hash))) {
 			return fail(400, { error: INVALID_LOGIN_MESSAGE, email });
 		}
 

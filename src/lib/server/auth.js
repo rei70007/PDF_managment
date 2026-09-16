@@ -49,3 +49,25 @@ export async function createSession(userId) {
 
 	return sessionId;
 }
+
+/**
+ * Resolve the currently logged-in user from a session cookie.
+ *
+ * The role deliberately comes from the database on every request instead of
+ * being copied into the cookie. That makes role changes take effect straight
+ * away and keeps authorization decisions on the server.
+ */
+export async function getSessionUser(sessionId) {
+	if (!sessionId) return null;
+
+	const [users] = await pool.execute(
+		`SELECT users.id, users.email, users.role
+		 FROM sessions
+		 INNER JOIN users ON users.id = sessions.user_id
+		 WHERE sessions.id = ? AND sessions.expires_at > NOW()
+		 LIMIT 1`,
+		[sessionId]
+	);
+
+	return users[0] ?? null;
+}
