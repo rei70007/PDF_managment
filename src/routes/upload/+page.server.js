@@ -1,5 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { put } from '@vercel/blob';
+import { BLOB_READ_WRITE_TOKEN } from '$env/static/private';
 import pool from '$lib/server/db.js';
 
 /** Load only the current user's PDFs, newest upload first. */
@@ -41,7 +42,8 @@ export const actions = {
 		try {
 			// A unique path avoids replacing a file with the same name from an earlier upload.
 			const blob = await put(`${locals.user.id}/${Date.now()}-${file.name}`, file, {
-				access: 'public'
+				access: 'public',
+				token: BLOB_READ_WRITE_TOKEN
 			});
 
 			// Store the file information so the upload can appear in this user's list.
