@@ -1,1 +1,92 @@
 @import 'tailwindcss';
+
+:root {
+	--color-canvas: #fffaf3;
+	--color-surface: #ffffff;
+	--color-ink: #292524;
+	--color-muted: #78716c;
+	--color-border: #e7dfd4;
+	--color-primary: #c2410c;
+	--color-primary-hover: #9a3412;
+	--color-sage: #5f7d61;
+	--color-sage-soft: #edf4eb;
+}
+
+@layer base {
+	body {
+		background: var(--color-canvas);
+		color: var(--color-ink);
+	}
+}
+
+@layer components {
+	.page-shell {
+		@apply min-h-screen bg-stone-50 text-stone-800;
+	}
+
+	.card {
+		@apply rounded-2xl border bg-white shadow-sm;
+		border-color: var(--color-border);
+	}
+
+	.btn-primary,
+	.btn-secondary,
+	.btn-danger {
+		@apply inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2;
+	}
+
+	.btn-primary {
+		@apply text-white;
+		background-color: var(--color-primary);
+	}
+
+	.btn-primary:hover {
+		background-color: var(--color-primary-hover);
+	}
+
+	.btn-primary:focus-visible {
+		outline-color: var(--color-primary);
+	}
+
+	.btn-secondary {
+		@apply border bg-white;
+		border-color: var(--color-border);
+		color: var(--color-primary-hover);
+	}
+
+	.btn-secondary:hover {
+		background-color: #fff7ed;
+	}
+
+	.btn-secondary:focus-visible {
+		outline-color: var(--color-primary);
+	}
+
+	.btn-danger {
+		@apply border border-red-200 bg-red-50 text-red-700;
+	}
+
+	.btn-danger:hover {
+		@apply border-red-300 bg-red-100;
+	}
+
+	.form-input {
+		@apply block w-full rounded-lg border bg-white px-3 py-2.5 text-sm text-stone-800 outline-none transition placeholder:text-stone-400 focus:ring-2;
+		border-color: var(--color-border);
+	}
+
+	.form-input:focus {
+		border-color: var(--color-primary);
+		--tw-ring-color: #fed7aa;
+	}
+
+	.text-link {
+		@apply font-semibold hover:underline;
+		color: var(--color-primary);
+	}
+
+	.sage-highlight {
+		background-color: var(--color-sage-soft);
+		color: var(--color-sage);
+	}
+}

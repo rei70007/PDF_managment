@@ -8,20 +8,20 @@
 
 <svelte:head><title>My PDFs | PDF Management</title></svelte:head>
 
-<main class="min-h-screen bg-stone-50 px-5 py-9 text-slate-800 sm:px-8">
+<main class="page-shell px-5 py-9 sm:px-8">
 	<div class="mx-auto max-w-5xl">
 		<header class="flex items-center justify-between gap-4">
 			<div>
-				<p class="text-sm font-semibold text-sky-700">PDF Management</p>
+				<p class="text-sm font-semibold text-orange-700">PDF Management</p>
 				<h1 class="mt-1 text-2xl font-semibold">Hello, {data.user.email}</h1>
 			</div>
 			<a
 				href={resolve('/logout')}
-				class="rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-semibold hover:bg-white"
+				class="btn-secondary px-3.5 py-2"
 				>Log out</a
 			>
 		</header>
-		<section class="mt-9 rounded-2xl border border-sky-100 bg-white p-6 shadow-sm">
+		<section class="card mt-9 p-6">
 			<h2 class="text-xl font-semibold">Add a PDF</h2>
 			<p class="mt-1 text-sm text-slate-600">PDF files only, up to 10 MB.</p>
 			{#if form?.error}<p class="mt-4 text-sm text-red-700" role="alert">
@@ -39,7 +39,7 @@
 					class="block w-full text-sm"
 				/><button
 					type="submit"
-					class="mt-4 rounded-lg bg-sky-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-800"
+					class="btn-primary mt-4"
 					>Upload PDF</button
 				>
 			</form>
@@ -58,7 +58,7 @@
 					No PDFs here yet.
 				</p>{:else}<div class="mt-5 grid gap-4 sm:grid-cols-2">
 					{#each data.pdfs as pdf (pdf.id)}<article
-							class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+							class="card p-4"
 						>
 							<h3 class="truncate text-sm font-semibold" title={pdf.filename}>{pdf.filename}</h3>
 							<p class="mt-1 text-sm text-slate-500">Uploaded {formatDate(pdf.uploaded_at)}</p>
@@ -66,7 +66,7 @@
 								href={pdf.blob_url}
 								rel="external"
 								download={pdf.filename}
-								class="mt-3 inline-flex text-sm font-semibold text-sky-700 hover:underline"
+								class="text-link mt-3 inline-flex text-sm"
 								>Download PDF</a
 							>
 						</article>{/each}

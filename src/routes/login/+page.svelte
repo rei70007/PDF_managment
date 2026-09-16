@@ -9,7 +9,7 @@
 <div class="mx-auto mt-16 max-w-sm">
 	.
 	<!-- Titel der Seite -->
-	<h1 class="mb-6 text-center text-4xl font-black tracking-tight text-[#0d1117]">PDF_Manager</h1>
+	<h1 class="mb-6 text-center text-4xl font-black tracking-tight text-stone-800">PDF_Manager</h1>
 
 	<!-- Fehlermeldung anzeigen -->
 	{#if form?.error}
@@ -21,7 +21,7 @@
 	{/if}
 
 	<!-- Login-Formular -->
-	<form method="POST" class="flex flex-col gap-3 rounded border border-gray-300 bg-white p-10">
+	<form method="POST" class="card flex flex-col gap-3 p-10">
 		<!-- Eingabefeld für Benutzername/E-Mail -->
 		<div class="flex flex-col gap-1">
 			<input
@@ -29,7 +29,7 @@
 				name="email"
 				required
 				placeholder="Email address"
-				class="rounded border border-gray-300 bg-gray-50 px-3 py-2 text-xs placeholder-gray-400 focus:border-gray-400 focus:outline-none"
+				class="form-input py-2 text-xs"
 			/>
 		</div>
 
@@ -40,14 +40,14 @@
 				name="password"
 				required
 				placeholder="Password"
-				class="rounded border border-gray-300 bg-gray-50 px-3 py-2 text-xs placeholder-gray-400 focus:border-gray-400 focus:outline-none"
+				class="form-input py-2 text-xs"
 			/>
 		</div>
 
 		<!-- Login-Button -->
 		<button
 			type="submit"
-			class="mt-1 cursor-pointer rounded-lg bg-pink-500 py-1.5 text-sm font-semibold text-white transition hover:bg-pink-600"
+			class="btn-primary mt-1 cursor-pointer py-1.5"
 		>
 			Log in
 		</button>
@@ -62,7 +62,7 @@
 		<!-- Link zur Registrierung -->
 		<p class="text-center text-sm text-gray-500">
 			Don't have an account?
-			<a href={resolve('/signup')} class="font-semibold text-pink-500 hover:underline"> Sign up </a>
+			<a href={resolve('/signup')} class="text-link"> Sign up </a>
 		</p>
 	</form>
 </div>

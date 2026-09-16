@@ -12,19 +12,19 @@
 	/>
 </svelte:head>
 
-<div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-violet-100 text-slate-800">
+<div class="page-shell">
 	<!-- Header: a simple brand mark and a friendly tagline. -->
 	<header class="mx-auto flex max-w-6xl items-center justify-between px-6 py-7 sm:px-10">
 		<a
 			href={resolve('/')}
-			class="flex items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600"
+			class="flex items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-700"
 		>
 			<span
-				class="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-100 text-xl"
+				class="flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-100 text-xl"
 				aria-hidden="true">📄</span
 			>
 			<span class="text-sm font-bold sm:text-base"
-				>PDF Management<span class="text-violet-500">.</span></span
+				>PDF Management<span class="text-orange-700">.</span></span
 			>
 		</a>
 		<span class="hidden text-sm text-slate-500 sm:block">Less clutter. More calm.</span>
@@ -38,7 +38,7 @@
 		>
 			<div>
 				<p
-					class="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-xs font-medium text-violet-700"
+					class="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-xs font-medium text-orange-800"
 				>
 					<span aria-hidden="true">✦</span> A little home for your documents
 				</p>
@@ -46,7 +46,7 @@
 					id="hero-heading"
 					class="max-w-lg text-5xl font-bold leading-tight tracking-tight sm:text-6xl"
 				>
-					Keep your PDFs<br />safe and <span class="text-violet-600">snug.</span>
+					Keep your PDFs<br />safe and <span class="text-orange-700">snug.</span>
 				</h1>
 				<p class="mt-6 max-w-md text-base leading-relaxed text-slate-600 sm:text-lg">
 					Class notes, big ideas, and everything in between. Give your PDFs a cozy place to stay, so
@@ -57,12 +57,12 @@
 				<div class="mt-8 flex flex-col gap-3 sm:flex-row">
 					<a
 						href={resolve('/signup')}
-						class="inline-flex items-center justify-center gap-3 rounded-full bg-violet-600 px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-violet-200 transition-colors hover:bg-violet-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600"
+						class="btn-primary gap-3 px-7 py-3.5 shadow-md shadow-orange-200"
 						>Sign Up <span aria-hidden="true">↗</span></a
 					>
 					<a
 						href={resolve('/login')}
-						class="inline-flex items-center justify-center rounded-full border border-violet-300 bg-white/70 px-7 py-3.5 text-sm font-semibold text-violet-700 transition-colors hover:bg-violet-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600"
+						class="btn-secondary px-7 py-3.5"
 						>Log In</a
 					>
 				</div>
@@ -75,33 +75,33 @@
 				aria-hidden="true"
 			>
 				<div
-					class="absolute h-64 w-64 rounded-full bg-gradient-to-br from-pink-100 to-violet-200 sm:h-80 sm:w-80"
+					class="absolute h-64 w-64 rounded-full bg-orange-100 sm:h-80 sm:w-80"
 				></div>
-				<span class="absolute right-8 top-5 text-4xl text-violet-400">✦</span>
-				<span class="absolute bottom-12 left-5 text-3xl text-pink-400">✧</span>
+				<span class="absolute right-8 top-5 text-4xl text-orange-400">✦</span>
+				<span class="absolute bottom-12 left-5 text-3xl text-[#5f7d61]">✧</span>
 				<div
-					class="absolute h-60 w-44 -rotate-12 rounded-3xl border border-violet-200 bg-violet-100 sm:h-64 sm:w-48"
+					class="absolute h-60 w-44 -rotate-12 rounded-3xl border border-orange-200 bg-orange-100 sm:h-64 sm:w-48"
 				></div>
 				<div
-					class="relative flex h-60 w-44 rotate-6 flex-col rounded-3xl border border-white bg-white p-6 shadow-xl shadow-violet-300/40 sm:h-64 sm:w-48"
+					class="relative flex h-60 w-44 rotate-6 flex-col rounded-3xl border border-white bg-white p-6 shadow-xl shadow-orange-200/60 sm:h-64 sm:w-48"
 				>
 					<div class="flex items-center justify-between">
 						<span
 							class="rounded-lg bg-rose-100 px-3 py-1 text-xs font-bold tracking-wider text-rose-600"
 							>PDF</span
 						>
-						<span class="text-xl text-violet-300">♡</span>
+						<span class="text-xl text-orange-300">♡</span>
 					</div>
 					<div class="mt-7 space-y-3">
-						<div class="h-2 w-20 rounded-full bg-violet-200"></div>
+						<div class="h-2 w-20 rounded-full bg-orange-200"></div>
 						<div class="h-2 w-full rounded-full bg-slate-100"></div>
 						<div class="h-2 w-full rounded-full bg-slate-100"></div>
 						<div class="h-2 w-16 rounded-full bg-slate-100"></div>
 					</div>
-					<div class="mt-auto text-center text-3xl text-violet-500">◡</div>
+					<div class="mt-auto text-center text-3xl text-orange-600">◡</div>
 				</div>
 				<div
-					class="absolute bottom-3 right-2 -rotate-6 rounded-2xl border border-white bg-white/95 px-5 py-3 text-sm font-medium text-violet-800 shadow-lg shadow-violet-200/50 sm:bottom-7"
+					class="absolute bottom-3 right-2 -rotate-6 rounded-2xl border border-white bg-white px-5 py-3 text-sm font-medium text-orange-900 shadow-lg shadow-orange-200/50 sm:bottom-7"
 				>
 					<span class="mr-2">☁️</span> A happy little PDF place
 				</div>
@@ -114,9 +114,9 @@
 				A little simpler. A lot more organized.
 			</h2>
 			<div class="grid gap-4 sm:grid-cols-3">
-				<article class="rounded-3xl border border-violet-100 bg-white/75 p-6 shadow-sm">
+				<article class="card p-6">
 					<span
-						class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-100 text-xl"
+						class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-100 text-xl"
 						aria-hidden="true">📤</span
 					>
 					<h3 class="font-semibold">Upload & exhale</h3>
@@ -124,9 +124,9 @@
 						Add your PDFs to your collection. One less thing to keep track of.
 					</p>
 				</article>
-				<article class="rounded-3xl border border-pink-100 bg-white/75 p-6 shadow-sm">
+				<article class="card p-6">
 					<span
-						class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-pink-100 text-xl"
+						class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-100 text-xl"
 						aria-hidden="true">🗂️</span
 					>
 					<h3 class="font-semibold">All together now</h3>
@@ -134,9 +134,9 @@
 						Keep your documents in one place, ready when you need them.
 					</p>
 				</article>
-				<article class="rounded-3xl border border-blue-100 bg-white/75 p-6 shadow-sm">
+				<article class="card p-6">
 					<span
-						class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-100 text-xl"
+						class="sage-highlight mb-4 flex h-11 w-11 items-center justify-center rounded-2xl text-xl"
 						aria-hidden="true">🌱</span
 					>
 					<h3 class="font-semibold">Your own little space</h3>
@@ -150,7 +150,7 @@
 
 	<!-- Footer: a small, friendly sign-off. -->
 	<footer
-		class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-violet-100 px-6 py-6 text-xs text-slate-500 sm:flex-row sm:px-10"
+		class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-orange-100 px-6 py-6 text-xs text-stone-500 sm:flex-row sm:px-10"
 	>
 		<p>PDF Management</p>
 		<p>Made for tidy files & peaceful minds <span aria-hidden="true">♡</span></p>
