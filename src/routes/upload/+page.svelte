@@ -11,11 +11,11 @@
 	}
 </script>
 
-<svelte:head><title>My PDFs | PDF Management</title></svelte:head> /* Sets the page title in the browser tab. */
+<svelte:head><title>My PDFs | PDF Management</title></svelte:head> <!--  Sets the page title in the browser tab. -->
 
 
-<main class="page-shell px-5 py-9 sm:px-8"> /*padding all sides for screens 640px and wider
-	<div class="mx-auto max-w-5xl"> /*auto margin, screen can grow to 5xl, centered*/
+<main class="page-shell px-5 py-9 sm:px-8"> <!-- padding all sides for screens 640px and wider -->
+	<div class="mx-auto max-w-5xl"> <!-- auto margin, screen can grow to 5xl, centered -->
 	<!-- Header with the logged-in user's email and logout link. -->
 		<header class="flex items-center justify-between gap-4">
 			<div>
@@ -35,7 +35,7 @@
 			<p class="mt-1 text-sm text-slate-600">PDF files only, up to 10 MB.</p>
 
 			<!-- Shows a message when the upload was successful. -->
-			{#if form?.error}<p class="mt-4 text-sm text-red-700" role="alert"> //role alert -- requires attention for scrreen readers
+			{#if form?.error}<p class="mt-4 text-sm text-red-700" role="alert"> <!-- role alert -- requires attention for scrreen readers -->
 					{form.error}
 				</p>{/if}
 				
@@ -75,7 +75,7 @@
 					class="mt-5 rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center text-sm text-slate-600"
 				>
 					No PDFs here yet.
-				</p>{:else}<div class="mt-5 grid gap-4 sm:grid-cols-2"> /*on sm screens and larger, show 2 PDFs per row */
+				</p>{:else}<div class="mt-5 grid gap-4 sm:grid-cols-2"> <!-- on sm screens and larger, show 2 PDFs per row -->
 
 					<!-- Loops through the array and creates one card for each PDF. -->
 					{#each data.pdfs as pdf (pdf.id)}<article
